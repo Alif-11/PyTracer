@@ -20,7 +20,7 @@ class Vector:
     return Vector(x=np_array[0], y=np_array[1], z=np_array[2])
 
 
-  def getVectorComponents(self):
+  def getComponents(self):
     """
     Args:
       None
@@ -41,3 +41,47 @@ class Vector:
     """
     array_version_of_vector = [self.x, self.y, self.z]
     return np.array(array_version_of_vector)
+  
+  def __add__(self, other):
+    """
+    Args:
+      other: To be added to this Vector. Has to be of type Vector, int, or float.
+    
+    Returns:
+      A new Vector that results from adding other to this Vector.
+    """
+    if isinstance(other, Vector):
+      return Vector(self.x + other.x, self.y + other.y, self.z + other.z)
+    elif isinstance(other, (int, float)):
+      return Vector(self.x + other, self.y + other, self.z + other)
+    else:
+      raise TypeError(f"Type 'Vector' cannot be added to type '{type(other)}'.")
+  
+
+  def __sub__(self, other):
+    """
+    Args:
+      other: To be subtracted from this Vector. Has to be of type Vector, int, or float.
+    
+    Returns:
+      A new Vector that results from subtractiong other from this Vector.
+    """
+    if isinstance(other, Vector):
+      return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
+    elif isinstance(other, (int, float)):
+      return Vector(self.x - other, self.y - other, self.z - other)
+    else:
+      raise TypeError(f"Type '{type(other)}' cannot be subtracted from type 'Vector'.")
+  
+
+  def invert(self):
+    """
+    Args:
+      None
+
+    Returns:
+      A new Vector whose components are the negative versions of this Vector's components.
+    """
+    return Vector(-1*self.x, -1*self.y, -1*self.z)
+  
+
