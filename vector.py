@@ -64,7 +64,7 @@ class Vector:
     For when our Vector is on the right side of the add symbol.
 
     Args:
-      other: To be added to this Vector. Has to be of type Vector, int, or float.
+      other | To be added to this Vector. Has to be of type Vector, int, or float.
     
     Returns:
       A new Vector that results from adding other to this Vector.
@@ -82,7 +82,7 @@ class Vector:
     For when our Vector is on the left side of the add symbol.
 
     Args:
-      other: To be subtracted from this Vector. Has to be of type Vector, int, or float.
+      other | To be subtracted from this Vector. Has to be of type Vector, int, or float.
     
     Returns:
       A new Vector that results from subtractiong other from this Vector.
@@ -99,7 +99,7 @@ class Vector:
     For when our Vector is on the right side of the add symbol.
 
     Args:
-      other: To be subtracted from this Vector. Has to be of type Vector, int, or float.
+      other | To be subtracted from this Vector. Has to be of type Vector, int, or float.
     
     Returns:
       A new Vector that results from subtractiong other from this Vector.
@@ -127,7 +127,7 @@ class Vector:
     For when our Vector is on the left side of the multiplication symbol.
 
     Args:
-      other: A scalar value, that will be multiplied to each component of this vector. Has to be of type int or float
+      other | A scalar value, that will be multiplied to each component of this vector. Has to be of type int or float
       
 
     Returns:
@@ -144,7 +144,7 @@ class Vector:
     For when our Vector is on the right side of the multiplication symbol.
 
     Args:
-      other: A scalar value, that will be multiplied to each component of this vector. Has to be of type int or float
+      other | A scalar value, that will be multiplied to each component of this vector. Has to be of type int or float
       
 
     Returns:
@@ -158,7 +158,7 @@ class Vector:
   def euclideanDistance(self, other):
     """
     Args:
-      other: A Vector. We will take the Euclidean distance between the invoking Vector and the 'other' Vector.
+      other | A Vector. We will take the Euclidean distance between the invoking Vector and the 'other' Vector.
     
     Returns:
       A scalar value, most likely float, that represents the Euclidean distance between the invoking Vector and the 'other' Vector.
@@ -181,7 +181,7 @@ class Vector:
   def dotProduct(self, other):
     """
     Args:
-      other: The Vector, along with this Vector, to take the dot product with
+      other | The Vector, along with this Vector, to take the dot product with
     
     Returns:
       The dot product between this Vector and the other Vector.
@@ -194,7 +194,7 @@ class Vector:
   def angleBetween(self, other):
     """
     Args:
-      other: The Vector, along with this Vector, to find the angle between.
+      other | The Vector, along with this Vector, to find the angle between.
     
     Returns:
       The angle between this Vector and the other Vector.
@@ -204,5 +204,22 @@ class Vector:
       return np.arccos(cos_angle)
     else:
       raise TypeError(f"Type 'Vector' cannot have an angle between non Vector type {type(other)}.")
+  
+  def reflectOver(self, other):
+    """
+    Args:
+      other | The Vector to reflect this Vector over.
+    
+    Returns:
+      This Vector, reflected over the other Vector.
+
+    """
+    if isinstance(other, Vector):
+      Vector.newVectorFromNpArray
+      return ( (2 * (self.dotProduct(other) / other.magnitude()) * other) - self)
+    else:
+      raise TypeError(f"Type 'Vector' cannot have be reflected over non Vector type {type(other)}.")
+  
+
     
 
