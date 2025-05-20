@@ -163,6 +163,46 @@ class Vector:
     Returns:
       A scalar value, most likely float, that represents the Euclidean distance between the invoking Vector and the 'other' Vector.
     """
-    pass
+    if isinstance(other, Vector):
+      return np.sqrt((self.x - other.x)**2 + (self.y - other.y)**2 + (self.z - other.z)**2)
+    else:
+      raise TypeError(f"Type 'Vector' cannot have a Euclidean distance with non Vector type {type(other)}.")
   
+  def magnitude(self):
+    """
+    Args:
+      None
+    
+    Returns:
+      The magnitude of this Vector.
+    """
+    return np.sqrt(self.x**2 + self.y**2 + self.z**2)
+
+  def dotProduct(self, other):
+    """
+    Args:
+      other: The Vector, along with this Vector, to take the dot product with
+    
+    Returns:
+      The dot product between this Vector and the other Vector.
+    """
+    if isinstance(other, Vector):
+      return (self.x*other.x + self.y*other.y + self.z*other.z)
+    else:
+      raise TypeError(f"Type 'Vector' cannot have a dot product with non Vector type {type(other)}.")
+  
+  def angleBetween(self, other):
+    """
+    Args:
+      other: The Vector, along with this Vector, to find the angle between.
+    
+    Returns:
+      The angle between this Vector and the other Vector.
+    """
+    if isinstance(other, Vector):
+      cos_angle = self.dotProduct(other) / (self.magnitude() * other.magnitude())
+      return np.arccos(cos_angle)
+    else:
+      raise TypeError(f"Type 'Vector' cannot have an angle between non Vector type {type(other)}.")
+    
 
