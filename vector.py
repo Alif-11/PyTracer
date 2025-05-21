@@ -211,15 +211,54 @@ class Vector:
       other | The Vector to reflect this Vector over.
     
     Returns:
-      This Vector, reflected over the other Vector.
-
+      The reflected version - of this Vector - over the other Vector. Note that a new Vector is returned.
     """
     if isinstance(other, Vector):
-      Vector.newVectorFromNpArray
       return ( (2 * (self.dotProduct(other) / other.magnitude()) * other) - self)
     else:
       raise TypeError(f"Type 'Vector' cannot have be reflected over non Vector type {type(other)}.")
   
+  def crossProduct(self, other):
+    """
+    Args:
+      other | The Vector, along with this Vector, to take the cross product with.
+    
+    Returns:
+      The cross product between this Vector and the other Vector. Note that a Vector is returned.
+    """
+    if isinstance(other, Vector):
+      return Vector(self.y * other.z - self.z * other.y,
+                    self.z * other.x - self.z * other.z,
+                    self.x * other.y - self.y * other.x)
+    else:
+      raise TypeError(f"Type 'Vector' cannot have a cross product with non Vector type {type(other)}.")
+  
+  def normalize(self):
+    """
+    Args:
+      None
+    
+    Returns:
+      The normalized version of this Vector. note that a new Vector is returned.
+    """
+    normalizing_denominator = self.magnitude()
+    x,y,z = self.getComponents()
+    return Vector(x/normalizing_denominator, y/normalizing_denominator, z/normalizing_denominator)
+  
+  def multiplyVectorByNpMatrix(self, other):
+    """
+    Args:
+      other | The NumPy matrix to multiply with this Vector.
+    
+    Returns:
+      A new Vector, that is the result of multiplying the invoking vector with the other Vector.
+    """
+    if isinstance(other, np.ndarray):
+      pass
+    else:
+      raise TypeError(f"Type 'Vector' cannot be multiplied with non NumPy-matrix type {type(other)}.")
+
+
 
     
 
