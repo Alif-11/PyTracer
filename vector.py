@@ -254,11 +254,26 @@ class Vector:
       A new Vector, that is the result of multiplying the invoking vector with the other Vector.
     """
     if isinstance(other, np.ndarray):
-      pass
+      assert other.shape == (3,3), f"Shape of np.ndarray variable 'other' must be (3,3). The actual shape of other is {other.shape} instead."
+      return Vector.newVectorFromNpArray(np.matmul(self.toNpArray(), other))
     else:
       raise TypeError(f"Type 'Vector' cannot be multiplied with non NumPy-matrix type {type(other)}.")
 
-
+  def rotate(self, angles):
+    """
+    Args:
+      angles | A (1,3) array, where elements at indices 0, 1, and 2 are the amounts we want to rotate our Vector by in the x, y, and z axes respectively.
+    
+    Returns:
+      A new Vector, that is the result of rotating this Vector by the angles specified in the 'angles' parameter.
+    """
+    x, y, z = angles
+    rotation_matrix = np.array([
+      [],
+      [],
+      []
+    ])
+    pass
 
     
 
