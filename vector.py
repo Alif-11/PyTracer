@@ -262,18 +262,27 @@ class Vector:
   def rotate(self, angles):
     """
     Args:
-      angles | A (1,3) array, where elements at indices 0, 1, and 2 are the amounts we want to rotate our Vector by in the x, y, and z axes respectively.
-    
+      angles | A (1,3) NumPy array, where elements at indices 0, 1, and 2 are the amounts we want to rotate our Vector by in the x, y, and z axes respectively. Please note that we are rotating about the local axes of the vector, not the global axes of the global coordinate system.    
     Returns:
       A new Vector, that is the result of rotating this Vector by the angles specified in the 'angles' parameter.
     """
-    x, y, z = angles
-    rotation_matrix = np.array([
-      [],
-      [],
-      []
-    ])
-    pass
+    if isinstance(angles, np.ndarray):
+      assert angles.shape == (3,), f"Shape of np.ndarray variable 'angles' must be (3,). The actual shape of angles is {angles.shape} instead."
+      x, y, z = angles
+      rotation_matrix = np.array([ 
+        [np.cos(z)*np.cos(y)*np.cos(x) - np.sin(z)*np.sin(x), 
+        np.cos(z)*np.cos(y)*np.sin(x) + np.sin(z)*np.cos(x), 
+        np.cos(z)*np.sin(y)],
+        [-np.sin(z)*np.cos(y)*np.cos(x) - np.cos(z)*np.sin(x),
+        -np.sin(z)*np.cos(y)*np.sin(x) + np.cos(z)*np.cos(x),
+        np.sin(z)*np.sin(y)],
+        [np.sin(y)*np.cos(x),
+        np.sin(y)*np.sin(x),
+        np.cos(y)]
+      ])
+      return self.multiplyVectorByNpMatrix(rotation_matrix)
+    else:
+      raise TypeError(f"Type 'Vector' cannot be rotated by non NumPy-array type {type(angles)}.")
 
     
 
